@@ -26,3 +26,18 @@ services:
     depends_on:
     - catalogue
   
+  user:
+    image: user:v1
+    depends_on:
+    - redis
+    - mongodb
+
+  redis:
+    image: redis
+
+  cart:
+    image: cart:v1
+    depends_on:
+    - redis
+    - catalogue
+
