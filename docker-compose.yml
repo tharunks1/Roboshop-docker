@@ -28,6 +28,7 @@ services:
     - cart
     - user
     - shipping
+    - payment
 
   user:
     image: user:v1
@@ -56,8 +57,18 @@ services:
     container_name: shipping
     depends_on:
     - mysql
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/shipping?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: shipping
-      SPRING_DATASOURCE_PASSWORD: shipping
 
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    environment:
+    - RABBITMQ_DEFAULT_USER=roboshop
+    - RABBITMQ_DEFAULT_PASS=roboshop123
+
+  payment:
+    container_name: payment
+    image: payment:v1
+    depends_on:
+    - rabbitmq
+    - user
+    - cart
