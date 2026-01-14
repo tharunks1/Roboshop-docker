@@ -13,14 +13,14 @@ RUN mvn package
 #
 # Run
 #
-FROM eclipse-temurin:8-jre-alpine
+FROM amazoncorretto:8-alpine
 
 EXPOSE 8080
 
 WORKDIR /opt/shipping
 
 ENV CART_ENDPOINT=cart:8080
-ENV DB_HOST=mysql
+ENV DB_HOST=mysql:3306
 
 COPY --from=build /opt/shipping/target/shipping-1.0.jar shipping.jar
 

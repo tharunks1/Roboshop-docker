@@ -56,8 +56,3 @@ services:
     container_name: shipping
     depends_on:
     - mysql
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/shipping?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: shipping
-      SPRING_DATASOURCE_PASSWORD: shipping
-
