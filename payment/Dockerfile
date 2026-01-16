@@ -6,6 +6,11 @@ ENV AMQP_USER=roboshop \
 USER root
 WORKDIR /app
 COPY requirements.txt /app/
+RUN apk add --no-cache \
+    gcc \
+    musl-dev \
+    python3-dev \
+    linux-headers
 RUN pip install -r requirements.txt
 COPY *.py /app/
 COPY payment.ini /app/
